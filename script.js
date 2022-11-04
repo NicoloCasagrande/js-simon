@@ -24,30 +24,37 @@ function displayed(numbers){
 function notDisplayed(){
     setTimeout(function(){
         numberVisualization.innerHTML = "";
-    },3000);
+    }, 3000);
 }
 
 function requestNumber(){
     let userArray = [];
     setTimeout(function(){
+        
         for (let index = 1; index <= 5; index++) {
             const userNum = Number(prompt(`Inserici il numero ${index} di 5`))
-            userArray.push(userNum);
+            userArray.push(userNum);67
         }
-    },3000);
+    }, 3000);
     return userArray;
 }
 
-function checkCorrect(exNumber,usNumber){
-    let correctNumber = [];
-    for (let i = 0; i < exNumber.length; i++) {
-        for (let x = 0; x < usNumber; x++) { 
-            if(exNumber[i] === usNumber[x]){
-                correctNumber.push(exNumber[i]);
+function checkCorrect(exNumber){
+    const usNumber = requestNumber();
+    console.log(usNumber);
+    let correctNum = [];
+    setTimeout(function(){
+        for (let i = 0; i < exNumber.length; i++) {
+            for (let x = 0; x < usNumber.length; x++) { 
+                if(exNumber[i] === usNumber[x]){
+                    correctNum.push(exNumber[i]);
+                }
             }
         }
-    }
-    return correctNumber;
+        console.log("di seguito l'array con i numeri corretti", correctNum);
+        console.log("di seguito il numero di risposte giuste", correctNum.length)
+    }, 3000)
+    return correctNum.length;
 }
 
 const numberVisualization = document.querySelector('.numeri');
@@ -55,10 +62,8 @@ const extractedNumber = arrayPopulation(100);
 console.log(extractedNumber);
 displayed(extractedNumber);
 notDisplayed();
-const userNumber = requestNumber();
-console.log(userNumber);
-const correctNumber = checkCorrect(extractedNumber, userNumber);
-console.log(correctNumber);
-console.log(correctNumber.length);
+const correctNumber = checkCorrect(extractedNumber);
+
+
 
 
