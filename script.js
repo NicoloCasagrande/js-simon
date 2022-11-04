@@ -1,21 +1,14 @@
 "user strict";
 
-const extractedNumber = arrayPopulation(100);
-
-
-const numberVisualization = document.querySelector('.numeri');
-
-console.log(extractedNumber);
-
 function arrayPopulation(maxNumber){
-    let bombPosition = [];
-    while(bombPosition.length < 5){
+    let cpuArray = [];
+    while(cpuArray.length < 5){
         const randomNumber = msMathRandom(maxNumber);
-        if(!bombPosition.includes(randomNumber)){
-            bombPosition.push(randomNumber);
+        if(!cpuArray.includes(randomNumber)){
+            cpuArray.push(randomNumber);
         }
     }
-    return bombPosition;
+    return cpuArray;
 }
 
 // funzione che genera un numero casuale da 1 a numMax
@@ -24,23 +17,26 @@ function msMathRandom(nMax){
     return result;
 }
 
-setTimeout(displayed(extractedNumber), 30000);
-const userNumbers = requestNumber();
-console.log(userNumbers);
-const result = checkCorrect(extractedNumber, userNumbers);
-console.log(result);
-
 function displayed(numbers){
     numberVisualization.innerHTML = numbers;
 }
 
-function requestNumber(){
-    let userArray = [];
-    for (let index = 1; index <= 5; index++) {
-        userArray.push(Number(prompt(`Inserici il numero ${index} di 5`)));
-    }
-    return userArray;
+function notDisplayed(){
+    setTimeout(function(){
+        numberVisualization.innerHTML = "";
+    },3000);
 }
+
+function requestNumber(){
+    setTimeout(function(){
+        let userArray = [];
+        for (let index = 1; index <= 5; index++) {
+            userArray.push(Number(prompt(`Inserici il numero ${index} di 5`)));
+        }
+        return userArray;
+    },3000);
+}
+
 function checkCorrect(extractedNumber,userNumber){
     let correct = 0;
 
@@ -56,5 +52,14 @@ function checkCorrect(extractedNumber,userNumber){
     return correct;
 }
 
+const extractedNumber = arrayPopulation(100);
+const numberVisualization = document.querySelector('.numeri');
+console.log(extractedNumber);
+displayed(extractedNumber);
+notDisplayed();
+const userNumber = requestNumber();
+console.log(userNumber);
+const result = checkCorrect(extractedNumber, userNumbers);
+console.log(result);
 
 
