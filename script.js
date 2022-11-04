@@ -31,32 +31,34 @@ function requestNumber(){
     let userArray = [];
     setTimeout(function(){
         for (let index = 1; index <= 5; index++) {
-            userArray.push(Number(prompt(`Inserici il numero ${index} di 5`)));
+            const userNum = Number(prompt(`Inserici il numero ${index} di 5`))
+            userArray.push(userNum);
         }
     },3000);
     return userArray;
 }
 
 function checkCorrect(exNumber,usNumber){
-    let correct = 0;
+    let correctNumber = [];
     for (let i = 0; i < exNumber.length; i++) {
         for (let x = 0; x < usNumber; x++) { 
             if(exNumber[i] === usNumber[x]){
-                correct += 1;
+                correctNumber.push(exNumber[i]);
             }
         }
     }
-    return correct;
+    return correctNumber;
 }
 
-const extractedNumber = arrayPopulation(100);
 const numberVisualization = document.querySelector('.numeri');
+const extractedNumber = arrayPopulation(100);
 console.log(extractedNumber);
 displayed(extractedNumber);
 notDisplayed();
 const userNumber = requestNumber();
 console.log(userNumber);
-const result = checkCorrect(extractedNumber, userNumber);
-console.log(result);
+const correctNumber = checkCorrect(extractedNumber, userNumber);
+console.log(correctNumber);
+console.log(correctNumber.length);
 
 
