@@ -28,24 +28,21 @@ function notDisplayed(){
 }
 
 function requestNumber(){
+    let userArray = [];
     setTimeout(function(){
-        let userArray = [];
         for (let index = 1; index <= 5; index++) {
             userArray.push(Number(prompt(`Inserici il numero ${index} di 5`)));
         }
-        return userArray;
     },3000);
+    return userArray;
 }
 
-function checkCorrect(extractedNumber,userNumber){
+function checkCorrect(exNumber,usNumber){
     let correct = 0;
-
-    for (let i = 0; i < extractedNumber.length; i++) {
-        const element1 = extractedNumber[i];
-        for (let x = 0; x < userNumber; x++) {
-            const element2 = userNumber[x];  
-            if(element1 === element2){
-                correct++;
+    for (let i = 0; i < exNumber.length; i++) {
+        for (let x = 0; x < usNumber; x++) { 
+            if(exNumber[i] === usNumber[x]){
+                correct += 1;
             }
         }
     }
@@ -59,7 +56,7 @@ displayed(extractedNumber);
 notDisplayed();
 const userNumber = requestNumber();
 console.log(userNumber);
-const result = checkCorrect(extractedNumber, userNumbers);
+const result = checkCorrect(extractedNumber, userNumber);
 console.log(result);
 
 
